@@ -1,0 +1,399 @@
+{
+  "info": {
+    "_postman_id": "d1b9cb7f-fe49-4dbe-8913-2a1f2196e9ea",
+    "name": "task-management-backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "33706559"
+  },
+  "item": [
+    {
+      "name": "New Request",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\":\"Mansi\",\r\n    \"email\":\"mansi@gmail.com\",\r\n    \"password\":\"mansi123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/auth/register",
+          "host": ["{{base_url}}"],
+          "path": ["auth", "register"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4N2Y4ZjkwYTFjMTZhYjU5ZjNkMTUxNyIsImlhdCI6MTc1MzE5MDQwNCwiZXhwIjoxNzUzMTk0MDA0fQ.hoHjAApOlxzfmHI6APUEyH-vwBXHTSwrf9cQHW7XwJU",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\":\"mansi@gmail.com\",\r\n    \"password\":\"mansi123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/auth/login",
+          "host": ["{{base_url}}"],
+          "path": ["auth", "login"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4N2Y4ZjkwYTFjMTZhYjU5ZjNkMTUxNyIsImlhdCI6MTc1MzE5MDQwNCwiZXhwIjoxNzUzMTk0MDA0fQ.hoHjAApOlxzfmHI6APUEyH-vwBXHTSwrf9cQHW7XwJU",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/tasks",
+          "host": ["{{base_url}}"],
+          "path": ["tasks"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4N2Y4ZjkwYTFjMTZhYjU5ZjNkMTUxNyIsImlhdCI6MTc1MzE5MDQwNCwiZXhwIjoxNzUzMTk0MDA0fQ.hoHjAApOlxzfmHI6APUEyH-vwBXHTSwrf9cQHW7XwJU",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"subject\":\"task2\",\r\n    \"deadline\":\"2025-07-24\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/tasks",
+          "host": ["{{base_url}}"],
+          "path": ["tasks"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4N2Y4ZjkwYTFjMTZhYjU5ZjNkMTUxNyIsImlhdCI6MTc1MzE5MDQwNCwiZXhwIjoxNzUzMTk0MDA0fQ.hoHjAApOlxzfmHI6APUEyH-vwBXHTSwrf9cQHW7XwJU",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"subject\":\"task2\",\r\n    \"deadline\":\"2025-07-24\"\r\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/tasks",
+          "host": ["{{base_url}}"],
+          "path": ["tasks"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4N2Y4ZjkwYTFjMTZhYjU5ZjNkMTUxNyIsImlhdCI6MTc1MzE5MDQwNCwiZXhwIjoxNzUzMTk0MDA0fQ.hoHjAApOlxzfmHI6APUEyH-vwBXHTSwrf9cQHW7XwJU",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "   {\r\n        \"subject\": \"task1\",\r\n        \"deadline\": \"2025-07-24T00:00:00.000Z\",\r\n        \"status\": \"complete\",\r\n       \"deleted\": false,\r\n        \"subtasks\": []\r\n     \r\n    }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/tasks/687f9164a1c16ab59f3d151e",
+          "host": ["{{base_url}}"],
+          "path": ["tasks", "687f9164a1c16ab59f3d151e"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4N2Y4ZjkwYTFjMTZhYjU5ZjNkMTUxNyIsImlhdCI6MTc1MzE5MDQwNCwiZXhwIjoxNzUzMTk0MDA0fQ.hoHjAApOlxzfmHI6APUEyH-vwBXHTSwrf9cQHW7XwJU",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"subject\":\"task2\",\r\n    \"deadline\":\"2025-07-24\"\r\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/tasks",
+          "host": ["{{base_url}}"],
+          "path": ["tasks"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4N2Y4ZjkwYTFjMTZhYjU5ZjNkMTUxNyIsImlhdCI6MTc1MzE5MDQwNCwiZXhwIjoxNzUzMTk0MDA0fQ.hoHjAApOlxzfmHI6APUEyH-vwBXHTSwrf9cQHW7XwJU",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"subject\":\"task2\",\r\n    \"deadline\":\"2025-07-24\"\r\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/tasks/687f9164a1c16ab59f3d151e",
+          "host": ["{{base_url}}"],
+          "path": ["tasks", "687f9164a1c16ab59f3d151e"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4N2Y4ZjkwYTFjMTZhYjU5ZjNkMTUxNyIsImlhdCI6MTc1MzE5MDQwNCwiZXhwIjoxNzUzMTk0MDA0fQ.hoHjAApOlxzfmHI6APUEyH-vwBXHTSwrf9cQHW7XwJU",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"subject\":\"task2\",\r\n    \"deadline\":\"2025-07-24\"\r\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/tasks",
+          "host": ["{{base_url}}"],
+          "path": ["tasks"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4N2Y4ZjkwYTFjMTZhYjU5ZjNkMTUxNyIsImlhdCI6MTc1MzE5MDQwNCwiZXhwIjoxNzUzMTk0MDA0fQ.hoHjAApOlxzfmHI6APUEyH-vwBXHTSwrf9cQHW7XwJU",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n   \"subtasks\":[\r\n        {\r\n             \"subject\":\"subtask2\",\r\n            \"deadline\":\"2025-07-24\"\r\n\r\n        }\r\n    ]\r\n   \r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/tasks/687f916ca1c16ab59f3d1522/subtasks",
+          "host": ["{{base_url}}"],
+          "path": ["tasks", "687f916ca1c16ab59f3d1522", "subtasks"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4N2Y4ZjkwYTFjMTZhYjU5ZjNkMTUxNyIsImlhdCI6MTc1MzE5MDQwNCwiZXhwIjoxNzUzMTk0MDA0fQ.hoHjAApOlxzfmHI6APUEyH-vwBXHTSwrf9cQHW7XwJU",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n   \"subtasks\":[\r\n        {\r\n             \"subject\":\"subtask2\",\r\n            \"deadline\":\"2025-07-24\"\r\n\r\n        }\r\n    ]\r\n   \r\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/tasks/687f916ca1c16ab59f3d1522/subtasks",
+          "host": ["{{base_url}}"],
+          "path": ["tasks", "687f916ca1c16ab59f3d1522", "subtasks"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4N2Y4ZjkwYTFjMTZhYjU5ZjNkMTUxNyIsImlhdCI6MTc1MzE5MDQwNCwiZXhwIjoxNzUzMTk0MDA0fQ.hoHjAApOlxzfmHI6APUEyH-vwBXHTSwrf9cQHW7XwJU",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"subtasks\": [\r\n    {\r\n        \"subject\": \"subtask1\",\r\n        \"deadline\": \"2025-07-24T00:00:00.000Z\",\r\n        \"status\": \"pending\",\r\n        \"deleted\": true,\r\n        \"_id\": \"687f9245a1c16ab59f3d1527\"\r\n    },\r\n    {\r\n        \"subject\": \"subtask2\",\r\n        \"deadline\": \"2025-07-24T00:00:00.000Z\",\r\n        \"status\": \"pending\",\r\n        \"deleted\": false,\r\n        \"_id\": \"687f924ca1c16ab59f3d152d\"\r\n    }\r\n]\r\n}\r\n    ",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/tasks/687f916ca1c16ab59f3d1522/subtasks",
+          "host": ["{{base_url}}"],
+          "path": ["tasks", "687f916ca1c16ab59f3d1522", "subtasks"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4N2Y4ZjkwYTFjMTZhYjU5ZjNkMTUxNyIsImlhdCI6MTc1MzE5MDQwNCwiZXhwIjoxNzUzMTk0MDA0fQ.hoHjAApOlxzfmHI6APUEyH-vwBXHTSwrf9cQHW7XwJU",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"subtasks\": [\r\n    {\r\n        \"subject\": \"subtask1\",\r\n        \"deadline\": \"2025-07-24T00:00:00.000Z\",\r\n        \"status\": \"pending\",\r\n        \"deleted\": true,\r\n        \"_id\": \"687f9245a1c16ab59f3d1527\"\r\n    },\r\n    {\r\n        \"subject\": \"subtask2\",\r\n        \"deadline\": \"2025-07-24T00:00:00.000Z\",\r\n        \"status\": \"pending\",\r\n        \"deleted\": false,\r\n        \"_id\": \"687f924ca1c16ab59f3d152d\"\r\n    }\r\n]\r\n}\r\n    "
+        },
+        "url": {
+          "raw": "{{base_url}}/tasks/687f916ca1c16ab59f3d1522/subtasks",
+          "host": ["{{base_url}}"],
+          "path": ["tasks", "687f916ca1c16ab59f3d1522", "subtasks"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://task-manager-backend-1gyi.onrender.com",
+      "type": "default"
+    }
+  ]
+}

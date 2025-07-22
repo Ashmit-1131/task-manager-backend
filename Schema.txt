@@ -1,11 +1,14 @@
-Database Schema Documentation:-
-This project uses MongoDB with Mongoose for storing users, their tasks, and subtasks.
- The design follows MongoDB’s embedded document pattern,which is well-suited for data that is frequently
-  accessed together.
+# Database Schema Documentation
 
- Example User Document:-----
+This project uses **MongoDB** with **Mongoose** to store users, their tasks, and subtasks using embedded documents. 
+This pattern is ideal for data that is frequently accessed together.
 
- {
+---
+
+## Example User Document
+
+```json
+{
   "name": "Ashmit Yadav",
   "email": "ashmit@gmail.com",
   "password": "<hashed_password>",
@@ -26,38 +29,61 @@ This project uses MongoDB with Mongoose for storing users, their tasks, and subt
     }
   ]
 }
+```
 
- User Document Structure:-
-Each user is stored as a single document that embeds their tasks. Each task in turn embeds its subtasks.
-Fields:
+---
 
-name (String) – User’s name.
-email (String, unique) – User’s login email.
-password (String) – Hashed user password.
-tasks (Array of objects) – List of tasks assigned to the user.
+## User Document Structure
 
-Task Object Structure
-Embedded within each user:
-subject (String): Task title or description
-deadline (Date): Due date of the task
-status (String): "pending" or "done"
-deleted (Boolean): Soft-delete flag (default false)
-subtasks (Array of subtask objects)
+Each user is stored as a single document that embeds an array of tasks. Tasks themselves embed subtasks.
 
-Subtask Object Structure
-subject (String): Subtask description
-deadline (Date)
-status (String): "pending" or "done"
-deleted (Boolean): Soft-delete flag
+**Fields:**
 
-Soft Deletion Strategy:-
-Instead of hard deleting a task or subtask, a deleted boolean flag is used. This ensures data is kept 
-for audit purposes.
-To fetch only active tasks and subtasks:
-User.findOne({ email: req.user.email }, {
-  tasks: {
-    $elemMatch: { deleted: { $ne: true } }
-  }
-});
-All query filters for tasks/subtasks should include:
-{ deleted: { $ne: true } }
+* **name** (String): User’s name.
+* **email** (String, unique): User’s login email.
+* **password** (String): Hashed password.
+* **tasks** (Array): List of task objects.
+
+---
+
+## Task Object Structure
+
+Embedded within each **User** document under `tasks`:
+
+* **subject** (String): Task title or description.
+* **deadline** (Date): Due date for the task.
+* **status** (String): e.g. "pending" or "done".
+* **deleted** (Boolean): Soft-delete flag (default `false`).
+* **subtasks** (Array): List of embedded subtask objects.
+
+---
+
+## Subtask Object Structure
+
+Embedded within each **Task** document under `subtasks`:
+
+* **subject** (String): Subtask description.
+* **deadline** (Date): Subtask due date.
+* **status** (String): e.g. "pending" or "done".
+* **deleted** (Boolean): Soft-delete flag.
+
+---
+
+## Soft Deletion Strategy
+
+Instead of permanently deleting, we use a `deleted` boolean flag to mark tasks or subtasks as removed. 
+This preserves the record for audits.
+
+* **Query active tasks/subtasks:** include `{ deleted: { $ne: true } }` in your filters.
+
+**Example (Mongoose):**
+
+```js
+User.findOne({ email: req.user.email })
+  .select('tasks')
+  .then(user => {
+    const active = user.tasks.filter(t => !t.deleted);
+  });
+```
+
+All API routes that list tasks or subtasks apply this filter by default to hide soft-deleted items.
