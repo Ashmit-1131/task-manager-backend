@@ -80,71 +80,79 @@ exports.getSubtasks = async (req, res) => {
     }
 };
 
+
 /**
- *updateSubtasks
- * replace or update the full list of subtasks for a specified task. Existing subtasks not
- * in the provided list are soft-deleted, existing ones are updated, and new ones are added.
+ * updateSubtasks
+ * --------------
+ * Bulk‑sync subtasks for a task:
+ * 1. Soft‑delete any existing subtasks not in the incoming list.
+ * 2. Update fields on subtasks that already exist.
+ * 3. Append any new subtasks.
+ * Finally, returns only those subtasks where `deleted === false`.
  */
 exports.updateSubtasks = async (req, res) => {
   try {
     const newSubs = req.body.subtasks;
+    // 1. Payload validation
     if (!Array.isArray(newSubs)) {
       return res.status(400).json({ error: 'subtasks must be an array' });
     }
 
+    // 2. Load user & task
     const user = await User.findById(req.userId);
-    if (!user) return res.status(404).json({ error: 'User not found' });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
 
     const task = user.tasks.id(req.params.taskId);
     if (!task || task.deleted) {
       return res.status(404).json({ error: 'Task not found' });
     }
 
-    // Build a Set of incoming IDs (as strings) for fast lookup
+    // 3. Build set of incoming IDs for quick lookup
     const incomingIds = new Set(
       newSubs
-        .filter(ns => ns._id)         // only defined IDs
-        .map(ns => ns._id.toString()) // ensure string
+        .filter(ns => ns._id)
+        .map(ns => ns._id.toString())
     );
 
-    // Soft-delete any subtask whose ID is _not_ in the incoming list
+    // 4. Soft‑delete any existing subtask not in the new list
     task.subtasks.forEach(sub => {
-      const subId = sub._id.toString();
-      if (!incomingIds.has(subId)) {
+      if (!incomingIds.has(sub._id.toString())) {
         sub.deleted = true;
       }
     });
 
-    // Now upsert the incoming list
+    // 5. Upsert each incoming subtask
     newSubs.forEach(ns => {
       if (ns._id) {
-        // Update existing
+        // Update an existing subtask
         const exist = task.subtasks.id(ns._id);
         if (exist) {
-          if (ns.subject !== undefined)  exist.subject  = ns.subject;
+          if (ns.subject  !== undefined) exist.subject  = ns.subject;
           if (ns.deadline !== undefined) exist.deadline = ns.deadline;
           if (ns.status   !== undefined) exist.status   = ns.status;
-          // Only override deleted if explicitly provided
+          // Only update deleted flag if provided explicitly
           if (typeof ns.deleted === 'boolean') {
             exist.deleted = ns.deleted;
           }
         }
       } else {
-        // Add brand-new subtask
+        // Add a brand‑new subtask
         task.subtasks.push({
           subject:  ns.subject,
-          deadline: ns.deadline || null,
-          status:   ns.status   || 'pending',
+          deadline: ns.deadline  || null,
+          status:   ns.status    || 'pending',
           deleted:  false
         });
       }
     });
 
+    // 6. Save and respond
     await user.save();
-
-    // Return only the non-deleted subtasks
     const updated = task.subtasks.filter(s => !s.deleted);
     res.json(updated);
+
   } catch (err) {
     console.error('Error in updateSubtasks:', err);
     res.status(500).json({ error: err.message });
