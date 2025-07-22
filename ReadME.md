@@ -41,6 +41,7 @@ A secure backend API built with Express.js, MongoDB (Mongoose), and JWT authenti
 * **Local**:    `http://localhost:8082`
 
 Use either as your `{{base_url}}` in Postman.
+You might already get the base url with postman collections
 
 ---
 
