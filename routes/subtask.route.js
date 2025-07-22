@@ -14,6 +14,14 @@ router.get(
   verifyToken,       // Ensure the user is authenticated
   subCtrl.getSubtasks // Controller to fetch subtasks
 );
+/**
+ *POST /tasks/:taskId/subtasks
+ * create subtasks for a specific task
+ * Protected (requires valid JWT)
+ */
+router.post(  '/', 
+      verifyToken,
+       subCtrl.createSubtasks);  
 
 /**
  * PUT /tasks/:taskId/subtasks

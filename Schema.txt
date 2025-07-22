@@ -1,0 +1,63 @@
+Database Schema Documentation:-
+This project uses MongoDB with Mongoose for storing users, their tasks, and subtasks.
+ The design follows MongoDB’s embedded document pattern,which is well-suited for data that is frequently
+  accessed together.
+
+ Example User Document:-----
+
+ {
+  "name": "Ashmit Yadav",
+  "email": "ashmit@gmail.com",
+  "password": "<hashed_password>",
+  "tasks": [
+    {
+      "subject": "complete backend integration",
+      "deadline": "2025-07-25T18:30:00.000Z",
+      "status": "pending",
+      "deleted": false,
+      "subtasks": [
+        {
+          "subject": "Set up MongoDB schema",
+          "deadline": "2025-07-21T12:00:00.000Z",
+          "status": "done",
+          "deleted": false
+        }
+      ]
+    }
+  ]
+}
+
+ User Document Structure:-
+Each user is stored as a single document that embeds their tasks. Each task in turn embeds its subtasks.
+Fields:
+
+name (String) – User’s name.
+email (String, unique) – User’s login email.
+password (String) – Hashed user password.
+tasks (Array of objects) – List of tasks assigned to the user.
+
+Task Object Structure
+Embedded within each user:
+subject (String): Task title or description
+deadline (Date): Due date of the task
+status (String): "pending" or "done"
+deleted (Boolean): Soft-delete flag (default false)
+subtasks (Array of subtask objects)
+
+Subtask Object Structure
+subject (String): Subtask description
+deadline (Date)
+status (String): "pending" or "done"
+deleted (Boolean): Soft-delete flag
+
+Soft Deletion Strategy:-
+Instead of hard deleting a task or subtask, a deleted boolean flag is used. This ensures data is kept 
+for audit purposes.
+To fetch only active tasks and subtasks:
+User.findOne({ email: req.user.email }, {
+  tasks: {
+    $elemMatch: { deleted: { $ne: true } }
+  }
+});
+All query filters for tasks/subtasks should include:
+{ deleted: { $ne: true } }

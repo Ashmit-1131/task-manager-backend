@@ -5,18 +5,18 @@ const router  = express.Router();
 const { register, login } = require('../controllers/auth.controller');
 
 /**
- * @route   POST /auth/register
- * @desc    Register a new user by providing name, email, and password.
+ *   POST /auth/register
+ *    Register a new user by providing name, email, and password.
  *          Password will be hashed before saving.
- * @access  Public
+ * Public
  */
 router.post('/register', register);
 
 /**
- * @route   POST /auth/login
- * @desc    Authenticate an existing user using email and password.
+ * POST /auth/login
+ *  Authenticate an existing user using email and password.
  *          Returns a JWT token if credentials are valid.
- * @access  Public
+ * Public
  */
 router.post('/login', login);
 
